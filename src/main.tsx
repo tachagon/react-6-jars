@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
+import { BrowserRouter } from "react-router-dom"
 import { RecoilRoot } from "recoil"
 
 import { MantineProvider, createTheme } from "@mantine/core"
@@ -13,10 +14,12 @@ const theme = createTheme({})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RecoilRoot>
-      <MantineProvider theme={theme}>
-        <App />
-      </MantineProvider>
-    </RecoilRoot>
+    <BrowserRouter>
+      <RecoilRoot>
+        <MantineProvider theme={theme}>
+          <App />
+        </MantineProvider>
+      </RecoilRoot>
+    </BrowserRouter>
   </StrictMode>,
 )

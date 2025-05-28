@@ -24,7 +24,9 @@ export function Register() {
 
         localStorage.setItem("token", token)
         localStorage.setItem("user", JSON.stringify(user))
-        window.location.reload()
+
+        // Redirect to home page after successful registration
+        window.location.href = "/"
       })
       .catch(err => {
         console.error("Error registering user:", err)
