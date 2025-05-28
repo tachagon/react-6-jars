@@ -4,6 +4,9 @@ import { Button } from "@mantine/core"
 import { authState } from "../store/auth"
 
 export function Home() {
+  // Set page title
+  document.title = "Home | 6 Jars"
+
   const setAuth = useSetRecoilState(authState)
   const token = localStorage.getItem("token")
 

@@ -5,6 +5,9 @@ import { authState } from "../store/auth"
 import { api } from "../libs/axios"
 
 export function Register() {
+  // Set page title
+  document.title = "Register | 6 Jars"
+
   const setAuth = useSetRecoilState(authState)
   const [form, setForm] = useState({
     username: "",
