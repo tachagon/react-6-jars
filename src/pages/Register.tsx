@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { useSetRecoilState } from "recoil"
 import { useForm } from "@mantine/form"
+import { useNavigate } from "react-router-dom"
 
 import { authState } from "../store/auth"
 import { api } from "../libs/axios"
 import { handleStrapiFieldErrors } from "../libs/mantine"
 
 import {
+  Anchor,
   Button,
   Container,
   Paper,
@@ -20,6 +22,7 @@ export function Register(props: PaperProps) {
   // Set page title
   document.title = "Register | 6 Jars"
 
+  const navigate = useNavigate()
   const [formError, setFormError] = useState<string | null>(null)
   const setAuth = useSetRecoilState(authState)
   // })
@@ -43,10 +46,9 @@ export function Register(props: PaperProps) {
       localStorage.setItem("user", JSON.stringify(user))
 
       // Redirect to home page after successful registration
-      window.location.href = "/"
+      navigate("/", { replace: true })
     })
     .catch(err => {
-      console.error("Error registering user:", err)
       handleStrapiFieldErrors(err, form)
 
       const globalMessage = err.response?.data?.error?.message
@@ -100,6 +102,10 @@ export function Register(props: PaperProps) {
             </Button>
           </Stack>
         </form>
+        <Text size="sm" color="dimmed" mt="md">
+          หากคุณมีบัญชีผู้ใช้แล้ว สามารถ{" "}
+          <Anchor onClick={() => navigate("/login")}>เข้าสู่ระบบ</Anchor> ได้ที่นี่
+        </Text>
       </Paper>
     </Container>
   )
